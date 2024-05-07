@@ -12,6 +12,7 @@ class StudentViewModel (
 ): IStudentViewModel {
     companion object {
         const val MAXLENGTH = 10
+        const val MAXVIEW = 5
     }
 
 
@@ -27,8 +28,8 @@ class StudentViewModel (
     private var name = mutableStateOf("")
     override val newStudent: State<String> = name
 
-    private var index = mutableStateOf(-1)
-    override val selectedIndex: State<Int> = index
+    private var indexSelected = mutableStateOf(-1)
+    override val selectedIndex: State<Int> = indexSelected
 
 
 
@@ -45,8 +46,11 @@ class StudentViewModel (
     }
 
     override fun guardarCambios() {
-        stateStudents.forEach{
-            gestorFichero.crearFic(nombreArchivo.absolutePath, "$it\n", true)
+        val studentsFile = gestorFichero.crearFic(nombreArchivo.absolutePath)
+        stateStudents.forEach { student ->
+            if (studentsFile != null){
+                gestorFichero.escribir(studentsFile, "$student\n")
+            }
         }
 
     }
@@ -69,18 +73,20 @@ class StudentViewModel (
         }
     }
 
-    override fun nombreNuevoEstudiante(name: String) {
-        TODO("Not yet implemented")
+    override fun nombreNuevoEstudiante(nombre: String) {
+        if (nombre.length <= MAXLENGTH) name.value = nombre
     }
 
     override fun estudianteSeleccionado(index: Int) {
-        TODO("Not yet implemented")
+        indexSelected.value = index
     }
 
     override fun infoMessage(info: String) {
         mensaje.value = info
         mostrarInfo(true)
     }
+
+    override fun shouldShowScrollStudentListImage() = stateStudents.size > MAXVIEW
 
 
 }

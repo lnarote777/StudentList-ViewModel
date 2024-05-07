@@ -18,4 +18,5 @@ interface IStudentViewModel {
     fun nombreNuevoEstudiante(name: String)
     fun estudianteSeleccionado(index: Int)
     fun infoMessage(info: String)
+    fun shouldShowScrollStudentListImage(): Boolean
 }
