@@ -25,24 +25,7 @@ import kotlinx.coroutines.delay
 import java.io.File
 
 
-@Composable
-fun Ventana(onClose: () -> Unit){
-    val archivo = File("estudiantes.txt")
-    val gestor = GestorFichero()
-    val studentViewModel = StudentViewModel(gestor, archivo)
 
-    Window(
-        onCloseRequest = onClose,
-        title = "My Student"
-    ){
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = Color.LightGray
-        ) {
-            Content(studentViewModel)
-        }
-    }
-}
 
 @Composable
 fun Content(viewModel: IStudentViewModel) {
