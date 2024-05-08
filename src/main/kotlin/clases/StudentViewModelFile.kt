@@ -5,7 +5,7 @@ import interfaces.IFile
 import interfaces.IStudentViewModel
 import java.io.File
 
-class StudentViewModel (
+class StudentViewModelFile (
     private val gestorFichero: IFile,
     private val nombreArchivo: File,
 

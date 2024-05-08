@@ -17,14 +17,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.Window
-import clases.GestorFichero
-import clases.StudentViewModel
 import interfaces.IStudentViewModel
 import kotlinx.coroutines.delay
-import java.io.File
-
-
 
 
 @Composable
@@ -309,5 +303,27 @@ fun ImageUpDownScroll(
                 .padding(start = 5.dp, bottom = 50.dp)
                 .size(20.dp)
         )
+    }
+}
+
+@Composable
+fun Eleccion(fichero: Boolean, baseDatos: Boolean, onclick1:() -> Unit, onclick2: ()-> Unit){
+    Column {
+        Row {
+            RadioButton(
+                selected = fichero,
+                onClick = onclick1
+            )
+            Text("Fichero")
+        }
+
+        Row{
+            RadioButton(
+                selected = baseDatos ,
+                onClick = onclick2
+            )
+            Text("Base de Datos")
+        }
+
     }
 }

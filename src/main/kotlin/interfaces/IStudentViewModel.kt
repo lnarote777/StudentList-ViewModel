@@ -15,7 +15,7 @@ interface IStudentViewModel {
     fun eliminarTodo()
     fun mostrarInfo(show: Boolean)
     fun leerEstudiantesArchivo()
-    fun nombreNuevoEstudiante(name: String)
+    fun nombreNuevoEstudiante(nombre: String)
     fun estudianteSeleccionado(index: Int)
     fun infoMessage(info: String)
     fun shouldShowScrollStudentListImage(): Boolean
