@@ -2,6 +2,7 @@
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
@@ -35,9 +36,7 @@ fun Content(viewModel: IStudentViewModel) {
         derivedStateOf { viewModel.shouldShowScrollStudentListImage() }
     }
 
-    LaunchedEffect(key1 = true){
-        viewModel.leerEstudiantesArchivo()
-    }
+
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -308,8 +307,8 @@ fun ImageUpDownScroll(
 
 @Composable
 fun Eleccion(fichero: Boolean, baseDatos: Boolean, onclick1:() -> Unit, onclick2: ()-> Unit){
-    Column {
-        Row {
+    Column(modifier = Modifier.selectableGroup()) {
+        Row (verticalAlignment = Alignment.CenterVertically){
             RadioButton(
                 selected = fichero,
                 onClick = onclick1
@@ -317,7 +316,7 @@ fun Eleccion(fichero: Boolean, baseDatos: Boolean, onclick1:() -> Unit, onclick2
             Text("Fichero")
         }
 
-        Row{
+        Row(verticalAlignment = Alignment.CenterVertically){
             RadioButton(
                 selected = baseDatos ,
                 onClick = onclick2

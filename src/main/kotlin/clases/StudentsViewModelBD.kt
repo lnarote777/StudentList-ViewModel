@@ -31,13 +31,13 @@ class StudentsViewModelBD(private val repository: StudentsRepository): IStudentV
     override fun agregarEstudiante() {
         if (name.value.isNotBlank()){
             stateStudents.add(name.value.trim())
-            repository.insertStudent(name.value)
             name.value = ""
         }
     }
 
     override fun eliminarEstudiante(index: Int) {
         repository.deleteStudent(index)
+        stateStudents.removeAt(index)
     }
 
     override fun guardarCambios() {
@@ -46,6 +46,8 @@ class StudentsViewModelBD(private val repository: StudentsRepository): IStudentV
 
     override fun eliminarTodo() {
         repository.clearAll()
+        stateStudents.clear()
+
     }
 
     override fun mostrarInfo(show: Boolean) {

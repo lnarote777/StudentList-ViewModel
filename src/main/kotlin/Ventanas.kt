@@ -29,6 +29,14 @@ fun VentanaEstudiantes( onClose: () -> Unit){
             color = Color.LightGray
         ) {
 
+            LaunchedEffect(key1 = true){
+                studentViewModelFile.leerEstudiantesArchivo()
+            }
+
+            LaunchedEffect(key1 = true){
+                studentsViewModelBD.leerEstudiantesArchivo()
+            }
+
             Eleccion(
                 selected1,
                 selected2,
@@ -37,10 +45,12 @@ fun VentanaEstudiantes( onClose: () -> Unit){
             )
 
             if (selected1){
+
                 Content(studentViewModelFile)
             }
 
             if (selected2){
+
                 Content(studentsViewModelBD)
             }
 
